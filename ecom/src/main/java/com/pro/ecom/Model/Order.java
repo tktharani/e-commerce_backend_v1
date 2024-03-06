@@ -2,6 +2,7 @@ package com.pro.ecom.Model;
 
 import java.sql.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -20,7 +21,7 @@ public class Order {
 	@Id
 	@GeneratedValue
 	 
-	private int oId;
+	private int Id;
 	
 	@ManyToOne
     @JoinColumn(name = "user_id")
@@ -29,7 +30,7 @@ public class Order {
 	private Date orderDate;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private Set<OrderItem> orderItems = new HashSet<>();
+    private List<OrderItem> orderItems ;
 
 	public Order(User user, Date orderDate) {
 		super();
@@ -37,12 +38,12 @@ public class Order {
 		this.orderDate = orderDate;
 	}
 
-	public int getOId() {
-		return oId;
+	public int getId() {
+		return Id;
 	}
 
-	public void setOId(int oId) {
-		this.oId = oId;
+	public void setId(int Id) {
+		this.Id = Id;
 	}
 
 	public User getUser() {
@@ -61,11 +62,11 @@ public class Order {
 		this.orderDate = orderDate;
 	}
 
-	public Set<OrderItem> getOrderItems() {
+	public List<OrderItem> getOrderItems() {
 		return orderItems;
 	}
 
-	public void setOrderItems(Set<OrderItem> orderItems) {
+	public void setOrderItems(List<OrderItem> orderItems) {
 		this.orderItems = orderItems;
 	}
 	

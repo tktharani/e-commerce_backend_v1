@@ -1,6 +1,7 @@
 package com.pro.ecom.Model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -15,38 +16,38 @@ import jakarta.persistence.Table;
 public class Product {
 	@Id
 	@GeneratedValue
-	private int pid;
-	private String pname;
+	private int id;
+	private String name;
 	private String description;
 	private double price;
 	private String image;
 	
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private Set<OrderItem> orderItems = new HashSet<>();
+    private List<OrderItem> orderItems;
 
 	
-	public Product(int pid, String pname, String description, double price) {
+	public Product(int id, String pname, String description, double price) {
 		super();
-		this.pid = pid;
-		this.pname = pname;
+		this.id =id;
+		this.name = pname;
 		this.description = description;
 		this.price = price;
 	}
 
-	public int getPid() {
-		return pid;
+	public int getId() {
+		return id;
 	}
 
-	public void setPid(int pid) {
-		this.pid = pid;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getPname() {
-		return pname;
+	public String getName() {
+		return name;
 	}
 
-	public void setPname(String productname) {
-		this.pname = pname;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getDescription() {

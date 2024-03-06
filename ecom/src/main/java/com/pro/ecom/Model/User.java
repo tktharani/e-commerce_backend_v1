@@ -1,6 +1,7 @@
 package com.pro.ecom.Model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -15,35 +16,34 @@ import jakarta.persistence.Table;
 public class User {
 	@Id
 	@GeneratedValue
-	private int uid;
+	private int id;
 	private String username;
 	private String password;
 	private String email;
 	private String address;
 	
-	  public User(int uid, String username, String password, String email, String address) {
+	  public User(int id, String username, String password, String email, String address) {
 		super();
-		this.uid = uid;
+		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.address = address;
 	}
 	  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	   private Set<Order> orders = new HashSet<>();
-	  
+	   private List<Order> orders ;  
 
-	public Set<Order> getOrders() {
+	public List<Order> getOrders() {
 		return orders;
 	}
-	public void setOrders(Set<Order> orders) {
+	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
-	public int getUid() {
-		return uid;
+	public int getId() {
+		return id;
 	}
-	public void setUid(int uid) {
-		this.uid = uid;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getUsername() {
 		return username;
