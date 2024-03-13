@@ -26,15 +26,15 @@ public class OrderItem {
 
   
     private int quantity;
-    private double total_price;
+    private double sub_total;
 
 
-	public OrderItem(Order order, Product product, int quantity,double total_price) {
+	public OrderItem(Order order, Product product, int quantity,double Sub_total) {
 		super();
 		this.order = order;
 		this.product = product;
 		this.quantity = quantity;
-		this.total_price = total_price;
+		this.sub_total = sub_total;
 	}
 
 
@@ -84,12 +84,12 @@ public class OrderItem {
 
 
 
-	public double getTotal_price() {
-		return total_price;
+	public double getSub_total() {
+		return sub_total;
 	}
 
-	public void setTotal_price(double total_price) {
-		this.total_price = total_price;
+	public void setTotal_price(double sub_total) {
+		this.sub_total = sub_total;
 	}
 	
     

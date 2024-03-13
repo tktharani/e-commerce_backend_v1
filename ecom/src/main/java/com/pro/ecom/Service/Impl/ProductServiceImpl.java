@@ -1,9 +1,11 @@
 package com.pro.ecom.Service.Impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.pro.ecom.Model.Product;
 import com.pro.ecom.Repo.ProductRepo;
@@ -16,6 +18,8 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	private ProductRepo productRepo;
 	
+	
+	
 	@Override
 	public Product findById(int pid) {
 		
@@ -27,19 +31,14 @@ public class ProductServiceImpl implements ProductService {
 			return null;	
 	}
 	
+	
+
+	
 	@Override
-	public Product updateProduct(int pid, String name, String description, double price,String image) {
-		
-		Product product = productRepo.findById(pid).get();		
-		product.setName(name);
-		product.setDescription(description);
-		product.setPrice(price);
-		product.setImage(image);
-		
-		
-		Product savedEntity = productRepo.save(product);
-		
-		return savedEntity;
-	}
+    public List<Product> getAllProducts() {
+        return productRepo.findAll();
+    }
+	
+	
 
 }

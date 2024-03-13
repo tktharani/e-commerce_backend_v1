@@ -28,8 +28,27 @@ public class Order {
     private User user;
 	
 	private Date orderDate;
+	private String status;
+	private double totalprice;
+	
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public double getTotalprice() {
+		return totalprice;
+	}
+
+	public void setTotalprice(double totalprice) {
+		this.totalprice = totalprice;
+	}
+
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems ;
 
 	public Order(User user, Date orderDate) {

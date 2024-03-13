@@ -8,6 +8,8 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -21,18 +23,15 @@ public class Product {
 	private String description;
 	private double price;
 	private String image;
+	private String categoryname;
 	
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<OrderItem> orderItems;
+	//@ManyToOne
+	//@JoinColumn(name = "catergoryName")
+	//private Category category;
 
 	
-	public Product(int id, String pname, String description, double price) {
-		super();
-		this.id =id;
-		this.name = pname;
-		this.description = description;
-		this.price = price;
-	}
+	//@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    //private List<OrderItem> orderItems;
 
 	public int getId() {
 		return id;
@@ -73,8 +72,24 @@ public class Product {
 	public void setImage(String image) {
 		this.image = image;
 	}
+
+	public String getCategoryname() {
+		return categoryname;
+	}
+
+	public void setCategoryname(String categoryname) {
+		this.categoryname = categoryname;
+	}
+
+//	public List<OrderItem> getOrderItems() {
+//		return orderItems;
+//	}
+//
+//	public void setOrderItems(List<OrderItem> orderItems) {
+//		this.orderItems = orderItems;
+//	}
+
 	
-	
-	
+		
 
 }
