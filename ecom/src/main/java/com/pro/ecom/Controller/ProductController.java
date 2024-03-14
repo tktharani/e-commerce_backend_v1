@@ -33,6 +33,7 @@ public class ProductController {
 	
 	
 	
+	
 	@PostMapping("/add")
 	public ResponseEntity<?> addProduct(@RequestBody Product product){
 		Product savedEntity =productRepo.saveAndFlush(product);
@@ -52,17 +53,29 @@ public class ProductController {
 	 }
 	 
 	 @PutMapping("/update/{id}")
-	 Product updateProduct(@RequestBody Product product,@PathVariable int id) {
-		 return productRepo.findById(id)
-				 .map(user ->{
-					 user.setName(product.getName());
-					 user.setDescription(product.getDescription());
-					 user.setPrice(product.getPrice());
-					 user.setImage(product.getImage());
-					 user.setCategoryname(product.getCategoryname());
-					 return productRepo.save(product);
-				 }).orElseThrow(()->new ProductNotFoundException(id));
-	 }
+	    public ResponseEntity<?> updateProduct(@RequestBody Product updatedProduct, @PathVariable int id) {
+	        try {
+	            Product existingProduct = productRepo.findById(id)
+	                    .orElseThrow(() -> new ProductNotFoundException(id));
+
+	            existingProduct.setName(updatedProduct.getName());
+	            existingProduct.setDescription(updatedProduct.getDescription());
+	            existingProduct.setPrice(updatedProduct.getPrice());
+	            existingProduct.setImage(updatedProduct.getImage());
+	            existingProduct.setCategoryname(updatedProduct.getCategoryname());
+
+	            productRepo.save(existingProduct);
+
+	            return ResponseEntity.ok().body("Product updated successfully");
+	        } catch (Exception e) {
+	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to update product");
+	        }
+	    }
+	 @GetMapping("/vegandfruits/{categoryname}")
+     public ResponseEntity<?> getVegetables(@PathVariable String categoryname){
+         List<Product> product1 = productRepo.findByName(categoryname); 
+         return ResponseEntity.status(HttpStatus.OK).body(product1);
+     }
 
 	 @DeleteMapping("/delete/{id}")
 	 String deleteProduct(@PathVariable int id) {

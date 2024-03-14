@@ -35,9 +35,19 @@ public class User {
     
     private String role;
     
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Order> order;
+    
+    
 	
 	  
-  public String getRole() {
+  public List<Order> getOrder() {
+		return order;
+	}
+	public void setOrder(List<Order> order) {
+		this.order = order;
+	}
+public String getRole() {
 		return role;
 	}
 	public void setRole(String role) {
