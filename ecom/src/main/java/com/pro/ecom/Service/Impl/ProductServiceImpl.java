@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.pro.ecom.Exception.ProductNotFoundException;
 import com.pro.ecom.Model.Product;
 import com.pro.ecom.Repo.ProductRepo;
 import com.pro.ecom.Service.ProductService;
@@ -40,6 +41,12 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getAllProducts() {
         return productRepo.findAll();
     }
+	@Override
+	public Product findByIdProduct(int pid) {
+		return productRepo.findById(pid)
+				.orElseThrow(() -> new ProductNotFoundException(pid));
+	}
+	
 	
 	
 

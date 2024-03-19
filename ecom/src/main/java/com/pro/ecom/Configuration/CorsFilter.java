@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
-import jakarta.security.auth.message.callback.PrivateKeyCallback.Request;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
@@ -14,14 +13,12 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 @Component
 @Configuration
-
-
-
 public class CorsFilter implements Filter {
-	
-	@Override
+
+    @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         // Initialization logic, if any
     }
@@ -32,7 +29,7 @@ public class CorsFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        // Allow requests from all origins (you can refine this if needed)
+        // Allow requests from specific origin (replace "http://example.com" with your actual origin)
         response.setHeader("Access-Control-Allow-Origin", "*");
 
         // Allow specific HTTP methods
@@ -41,7 +38,13 @@ public class CorsFilter implements Filter {
         // Allow specific headers
         response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
-        // Handle pre-flight OPTIONS requests
+        // Allow credentials if needed
+        // response.setHeader("Access-Control-Allow-Credentials", "true");
+
+        // Set the maximum age for preflight requests (in seconds)
+        // response.setHeader("Access-Control-Max-Age", "3600");
+
+        // Handle preflight OPTIONS requests
         if ("OPTIONS".equals(request.getMethod())) {
             // Set response status to 200 OK
             response.setStatus(HttpServletResponse.SC_OK);
@@ -55,6 +58,4 @@ public class CorsFilter implements Filter {
     public void destroy() {
         // Cleanup logic, if any
     }
-
-	
-	}
+}

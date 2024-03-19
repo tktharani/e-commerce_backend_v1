@@ -12,6 +12,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="products")
@@ -19,15 +22,17 @@ public class Product {
 	@Id
 	@GeneratedValue
 	private int id;
+	@NotNull
 	private String name;
+	@Size(max = 100)
 	private String description;
+	@DecimalMin("0.01")
+
 	private double price;
 	private String image;
 	private String categoryname;
 	
-	//@ManyToOne
-	//@JoinColumn(name = "catergoryName")
-	//private Category category;
+	
 
 	
 	//@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)

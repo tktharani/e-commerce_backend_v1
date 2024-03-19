@@ -12,9 +12,6 @@ public interface ProductService {
 	List<Product> getAllProducts();
 
 	Product findById(int pid);
-	
-	 
-        
-        
+	Product findByIdProduct(int pid);      
 	
 }

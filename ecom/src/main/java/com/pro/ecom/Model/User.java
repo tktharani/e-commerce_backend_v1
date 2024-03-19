@@ -10,8 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+
 
 @Entity
 @Table(name="users")
@@ -19,49 +18,28 @@ public class User {
 	@Id
 	@GeneratedValue
 	private int id;
-	
-	@NotBlank(message = "Username is required")
 	private String username;
-	
-	@NotBlank(message = "Password is required")
 	private String password;
-	
-	@Email(message = "Invalid email format")
-    @NotBlank(message = "Email is required")
 	private String email;
 	
-    @NotBlank(message = "Address is required")
+    
     private String address;
     
     private String role;
     
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Order> order;
+    
     
     
 	
 	  
-  public List<Order> getOrder() {
-		return order;
-	}
-	public void setOrder(List<Order> order) {
-		this.order = order;
-	}
-public String getRole() {
+  
+    public String getRole() {
 		return role;
 	}
 	public void setRole(String role) {
 		this.role = role;
 	}
-@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-   private List<Order> orders ;  
-	public List<Order> getOrders() {
-		return orders;
-	}
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
-	public int getId() {
+public int getId() {
 		return id;
 	}
 	public void setId(int id) {
